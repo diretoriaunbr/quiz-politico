@@ -2,13 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Processando resultado...</title>
 </head>
 <body>
 
-<p>Processando resultado...</p>
+<p>Processando resultado... Aguarde.</p>
 
 <script>
+(function(){
   const params = new URLSearchParams(window.location.search);
   const raw = params.get("score");
 
@@ -18,13 +20,18 @@
     score = parseInt(raw.replace("%",""));
   }
 
+  // cria token simples
+  const token = Date.now();
+  localStorage.setItem("quiz_token", token);
+
   if (score === 100) {
-    window.location.href = "grupo100.html?score=" + score;
+    window.location.href = "grupo100.html?score=" + score + "&token=" + token;
   } else if (score >= 80) {
-    window.location.href = "grupo80a99.html?score=" + score;
+    window.location.href = "grupo80a99.html?score=" + score + "&token=" + token;
   } else {
-    window.location.href = "grupoabaixo80.html?score=" + score;
+    window.location.href = "grupoabaixo80.html?score=" + score + "&token=" + token;
   }
+})();
 </script>
 
 </body>
