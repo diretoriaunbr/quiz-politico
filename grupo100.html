@@ -3,14 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Resultado 100%</title>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const urlToken = params.get("token");
+const localToken = localStorage.getItem("quiz_token");
+
+if (!urlToken || urlToken !== localToken) {
+  alert("Acesso negado! Você precisa concluir o quiz primeiro.");
+  window.location.href = "https://diretoriaunbr.github.io/quiz-politico/";
+}
+</script>
+
 </head>
 <body>
 
 <h1>Parabéns! Você acertou 100%</h1>
-
-<p>Você atingiu o nível máximo do teste.</p>
-
-<p>Aqui futuramente teremos conteúdo exclusivo.</p>
+<p>Conteúdo exclusivo para participantes com pontuação máxima.</p>
 
 </body>
 </html>
